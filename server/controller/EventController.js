@@ -208,4 +208,33 @@ module.exports = class EventController {
         }
     }
 
+    static async buyTicket(req, res, next) {
+    try {
+        const { id } = req.params;
+        const userId = req.user.id;
+
+        const event = await Event.findByPk(id);
+
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        if (event.stock <= 0) {
+            return res.status(400).json({ message: 'Out of stock, no tickets available' });
+        }
+
+        event.stock -= 1;
+
+        await event.save();
+
+        return res.status(200).json({
+            message: 'Ticket purchased successfully',
+            eventId: event.id,
+            remainingStock: event.stock
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
 };

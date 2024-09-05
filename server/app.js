@@ -35,6 +35,7 @@ app.get("/categories/:id", EventController.oneCategory)
 app.post("/categories", guardAdmin, EventController.addNewCategory)
 app.put("/categories/:id", guardAdmin, EventController.updateCategory)
 app.delete('/categories/:id', guardAdmin, EventController.deleteCategory)
+app.patch('/events/:id/buy', EventController.buyTicket)
 
 app.use(errorHandler)
 
