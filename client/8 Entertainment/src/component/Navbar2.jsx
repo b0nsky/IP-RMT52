@@ -1,7 +1,14 @@
 import '../App.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Navbar2() {
+
+    const navigate = useNavigate()
+    const handleUserLogout = () => {
+        localStorage.removeItem("access_token");
+        navigate("/login");
+    };
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,9 +42,9 @@ function Navbar2() {
                     </Link>
                 </li>
             </ul>
-                <Link to="/login" className="btn btn-outline-danger ms-auto"> 
+                <button className="btn btn-outline-danger ms-auto" type="submit" onClick={handleUserLogout}> 
                     Logout
-                </Link>
+                </button>
             </div>
         </div>
     </nav>
