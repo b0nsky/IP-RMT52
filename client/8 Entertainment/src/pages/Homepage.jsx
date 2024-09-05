@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axios/axios';
 import HomepageCard from '../component/HomepageCard';
 import Swal from 'sweetalert2'
-import Navbar from '../component/Navbar';
 import { Link } from 'react-router-dom';
 
 function HomePage() {

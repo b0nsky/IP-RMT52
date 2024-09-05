@@ -2,7 +2,7 @@ import '../App.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-function HomepageCard({ events }) {
+function HomepageCard2({ events }) {
     return (
     <div className="col-md-4 d-flex">
         <div className="card mb-4 shadow-sm h-100">
@@ -15,7 +15,7 @@ function HomepageCard({ events }) {
                 <h3 className="card-title text-center">{events.eventName}</h3>
                 <p className="card-text text-center">Venue : {events.venue}</p>
                 <p className="card-text text-center">Price : Rp {events.price.toLocaleString()}</p>
-                <Link to={`/pub/detailevent/${events.id}`} className="btn btn-light mt-auto">
+                <Link to={`/detailevent/${events.id}`} className="btn btn-light mt-auto">
                     Details
                 </Link>
             </div>
@@ -24,7 +24,7 @@ function HomepageCard({ events }) {
     );
 }
 
-HomepageCard.propTypes = {
+HomepageCard2.propTypes = {
     events: PropTypes.shape({
         id: PropTypes.number.isRequired,
         eventName: PropTypes.string.isRequired,
@@ -34,4 +34,4 @@ HomepageCard.propTypes = {
     }),
 };
 
-export default HomepageCard;
+export default HomepageCard2;

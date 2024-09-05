@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axios/axios';
-import HomepageCard from '../component/HomepageCard';
 import Swal from 'sweetalert2'
-import Navbar2 from '../component/Navbar2';
 import { Link } from 'react-router-dom';
+import HomepageCard2 from '../component/HomepageCard2';
 
-function HomePage() {
+function HomePage2() {
     const [events, setEvents] = useState([]);
 
     const fetchData = async () => {
@@ -38,7 +37,7 @@ useEffect(() => {
 
         <div className="row">
             {events.map((event) => (
-                <HomepageCard
+                <HomepageCard2
                     key={event.id}
                     events={{
                         id: event.id,
@@ -55,4 +54,4 @@ useEffect(() => {
     );
 }
 
-export default HomePage;
+export default HomePage2;

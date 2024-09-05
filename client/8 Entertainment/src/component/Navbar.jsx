@@ -2,7 +2,6 @@ import '../App.css'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -11,37 +10,37 @@ function Navbar() {
                     alt="8 Entertainment"
                     height={60}
                 />
-            <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="/">
-                        Home
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon" />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/">
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/categories">
+                                Categories
+                            </Link>
+                        </li>
+                    </ul>
+                    <Link to="/login" className="btn btn-outline-primary ms-auto"> 
+                        Login
                     </Link>
-                </li>
-                <li li className="nav-item">
-                    <Link className="nav-link" to="/categories">
-                        Categories
-                    </Link>
-                </li>
-            </ul>
-                <Link to="/login" className="btn btn-outline-primary ms-auto"> 
-                    Login
-                </Link>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     )
 }
 
-export default Navbar
+export default Navbar;
