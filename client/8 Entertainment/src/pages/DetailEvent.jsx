@@ -5,13 +5,25 @@ import Swal from "sweetalert2";
 
 function DetailEvent() {
     const [event, setEvent] = useState(null);
+    const [generatedDescription, setGeneratedDescription] = useState(''); 
     const { id } = useParams();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const fetchEventDetails = async () => {
         try {
             const { data } = await axiosInstance.get(`/pub/events/${id}`);
             setEvent(data);
+
+            const descriptionResponse = await axiosInstance.post(
+                `/pub/events/${id}/generate-description`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    },
+                }
+            );
+            setGeneratedDescription(descriptionResponse.data.description);
         } catch (err) {
             console.log(err);
             Swal.fire({
@@ -27,7 +39,6 @@ function DetailEvent() {
     }, [id]);
 
     const handleBuyTicket = async () => {
-
         try {
             const { data } = await axiosInstance.patch(`/events/${id}/buy`, {}, {
                 headers: {
@@ -89,7 +100,7 @@ function DetailEvent() {
                 <div className="col-md-6">
                     <div className="event-info">
                         <h4>About {event.eventName}</h4>
-                        <p>{event.description}</p>
+                        <p>{generatedDescription}</p> 
                     </div>
                 </div>
             </div>

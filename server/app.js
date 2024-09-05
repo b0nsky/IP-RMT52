@@ -23,6 +23,7 @@ app.get('/pub/events/:id', EventController.onePubEvent)
 app.post('/login', EventController.login)
 app.post('/login/google', EventController.googleLogin)
 app.post('/new-user', EventController.newUser)
+app.post('/pub/events/:id/generate-description', EventController.pubGenerateDescription);
 
 app.use(authentication)
 
@@ -37,6 +38,7 @@ app.post("/categories", guardAdmin, EventController.addNewCategory)
 app.put("/categories/:id", guardAdmin, EventController.updateCategory)
 app.delete('/categories/:id', guardAdmin, EventController.deleteCategory)
 app.patch('/events/:id/buy', EventController.buyTicket)
+app.post('/events/:id/generate-description', EventController.generateDescription);
 
 
 app.use(errorHandler)

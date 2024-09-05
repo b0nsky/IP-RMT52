@@ -2,7 +2,8 @@ const { comparePassword } = require("../helpers/bcrypt");
 const { signToken } = require('../helpers/jwt');
 const { Event, Category, User } = require('../models');
 const { Op } = require('sequelize');
-const { OAuth2Client } = require('google-auth-library')
+const { OAuth2Client } = require('google-auth-library');
+const gemini = require('../helpers/gemini')
 const client = new OAuth2Client()
 
 
@@ -264,6 +265,46 @@ module.exports = class EventController {
                 remainingStock: event.stock
             });
         } catch (err) {
+            next(err);
+        }
+    }
+
+    static async generateDescription(req, res, next) {
+        try {
+            const { id } = req.params;
+
+            const event = await Event.findByPk(id);
+            if (!event) {
+                return res.status(404).json({ message: `Event with id ${id} not found` });
+            }
+
+            const { eventName } = event;
+
+            const description = await gemini(eventName);
+
+            res.status(200).json({ eventName, description });
+        } catch (err) {
+            console.error('Error generating description:', err);
+            next(err);
+        }
+    }
+
+    static async pubGenerateDescription(req, res, next) {
+        try {
+            const { id } = req.params;
+
+            const event = await Event.findByPk(id);
+            if (!event) {
+                return res.status(404).json({ message: `Event with id ${id} not found` });
+            }
+
+            const { eventName } = event;
+
+            const description = await gemini(eventName);
+
+            res.status(200).json({ eventName, description });
+        } catch (err) {
+            console.error('Error generating description:', err);
             next(err);
         }
     }
