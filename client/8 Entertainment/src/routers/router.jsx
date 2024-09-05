@@ -37,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/pub/detailevent/:id",
                 element: <DetailEvent/>
+            },
+            {
+                path: "/new-user",
+                element: <NewUser />,
             }
         ]
     },
@@ -121,17 +125,6 @@ const router = createBrowserRouter([
                     throw redirect("/login");
                 },
             },
-            {
-                path: "/new-user",
-                element: <NewUser />,
-                loader: () => {
-                    const access_token = localStorage.getItem("access_token");
-                    if (access_token) {
-                        return null;
-                    }
-                    throw redirect("/login");
-                },
-            }
         ]
     }
 
