@@ -31,3 +31,5 @@ function AddNewCategory() {
      </div>
     )
 }
+
+export default AddNewCategory

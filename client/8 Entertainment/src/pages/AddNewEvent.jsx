@@ -109,3 +109,5 @@ function AddNewEvent() {
      </div>
     )
 }
+
+export default AddNewEvent

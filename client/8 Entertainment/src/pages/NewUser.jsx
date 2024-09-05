@@ -72,3 +72,5 @@ function NewUser() {
      </div>
     )
 }
+
+export default NewUser

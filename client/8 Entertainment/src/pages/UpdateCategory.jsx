@@ -31,3 +31,5 @@ function UpdateCategory() {
      </div>
     )
 }
+
+export default UpdateCategory

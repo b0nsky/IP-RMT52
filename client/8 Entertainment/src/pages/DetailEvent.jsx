@@ -53,3 +53,5 @@ function DetailEvent() {
      </div>
     )
 }
+
+export default DetailEvent

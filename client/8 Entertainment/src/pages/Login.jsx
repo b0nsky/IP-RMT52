@@ -1,9 +1,27 @@
+import { useEffect } from "react"
+
 function Login() {
     try {
         
     } catch (err) {
         
     }
+
+    function handleCredentialResponse(response) {
+        console.log('Encoded JWT ID token: ' + response.credential)
+    }
+
+    useEffect(() => {
+        google.accounts.id.initialize({
+            client_id: "365803712182-fo7h02d63notgmfutrtr8qnqh9j3hi6p.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }, [])
 
     return (
      <div className="login-container">
@@ -50,8 +68,14 @@ function Login() {
           </button>
          </div>
         </form>
+        <div className="d-flex justify-content-center flex-column align-items-center">
+            <div>or</div>
+            <div id="buttonDiv"></div>
+        </div>
        </div>
       </div>
      </div>
     )
 }
+
+export default Login

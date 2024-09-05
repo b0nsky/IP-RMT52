@@ -109,3 +109,5 @@ function UpdateEvent() {
      </div>
     )
 }
+
+export default UpdateEvent
