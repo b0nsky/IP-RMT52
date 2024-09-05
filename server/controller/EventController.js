@@ -181,4 +181,31 @@ module.exports = class EventController {
             next(err);
         }
     }
+
+    static async deleteCategory(req, res, next) {
+        try {
+            const { id } = req.params;
+            const category = await Category.findByPk(id);
+            if (!category) throw { name: "NotFound", message: "Category not found" };
+
+            await category.destroy();
+            res.status(200).json({ message: "Category deleted successfully" });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async oneCategory (req, res, next) {
+        const { id } = req.params
+        try {
+            const category = await Category.findByPk(id);
+            if(!category) {
+                throw {name: "NotFound", message : `Category id:${id} not found`}
+            }
+            res.status(200).json(category);
+        } catch (err) {
+            next(err);
+        }
+    }
+
 };
