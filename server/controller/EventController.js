@@ -2,6 +2,9 @@ const { comparePassword } = require("../helpers/bcrypt");
 const { signToken } = require('../helpers/jwt');
 const { Event, Category, User } = require('../models');
 const { Op } = require('sequelize');
+const { OAuth2Client } = require('google-auth-library')
+const client = new OAuth2Client()
+
 
 module.exports = class EventController {
     static async getEvents(req, res, next) {
@@ -152,6 +155,34 @@ module.exports = class EventController {
         }
     }
 
+    static async googleLogin(req, res, next) {
+        try {
+            const { googleToken } = req.body
+            const ticket = await client.verifyIdToken({
+                idToken: googleToken,
+                audience: "365803712182-fo7h02d63notgmfutrtr8qnqh9j3hi6p.apps.googleusercontent.com",
+            });
+            const {email} = ticket.getPayload()
+
+            let user = await User.findOne({ where: {email}})
+
+            if (!user) {
+                user = await User.create({
+                    email,
+                    password: '8Entertainment'
+                },
+                {
+                    hooks: false,
+                }
+            )
+        }
+            const token = signToken({ id: user.id, email: user.email, role: user.role });
+            res.status(200).json({ access_token: token });
+        } catch (err) {
+            next(err);
+        }
+    }
+
 
     static async pubEvents(req, res, next) {
         try {
@@ -209,32 +240,31 @@ module.exports = class EventController {
     }
 
     static async buyTicket(req, res, next) {
-    try {
-        const { id } = req.params;
-        const userId = req.user.id;
+        try {
+            const { id } = req.params;
+            const userId = req.user.id;
 
-        const event = await Event.findByPk(id);
+            const event = await Event.findByPk(id);
 
-        if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
+            if (!event) {
+                return res.status(404).json({ message: 'Event not found' });
+            }
+
+            if (event.stock <= 0) {
+                return res.status(400).json({ message: 'Out of stock, no tickets available' });
+            }
+
+            event.stock -= 1;
+
+            await event.save();
+
+            return res.status(200).json({
+                message: 'Ticket purchased successfully',
+                eventId: event.id,
+                remainingStock: event.stock
+            });
+        } catch (err) {
+            next(err);
         }
-
-        if (event.stock <= 0) {
-            return res.status(400).json({ message: 'Out of stock, no tickets available' });
-        }
-
-        event.stock -= 1;
-
-        await event.save();
-
-        return res.status(200).json({
-            message: 'Ticket purchased successfully',
-            eventId: event.id,
-            remainingStock: event.stock
-        });
-    } catch (err) {
-        next(err);
     }
-}
-
 };

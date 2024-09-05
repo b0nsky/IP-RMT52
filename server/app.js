@@ -11,7 +11,7 @@ const app = express()
 const cors = require('cors')
 const PORT = process.env.PORT || 3000
 app.get('/', (req, res) => {
-    res.send('8 Events!')
+    res.send('8 Entertainment!')
 })
 
 app.use(cors())
@@ -21,6 +21,7 @@ app.use(express.json())
 app.get('/pub/events', EventController.pubEvents)
 app.get('/pub/events/:id', EventController.onePubEvent)
 app.post('/login', EventController.login)
+app.post('/login/google', EventController.googleLogin)
 app.post('/new-user', EventController.newUser)
 
 app.use(authentication)
@@ -36,6 +37,7 @@ app.post("/categories", guardAdmin, EventController.addNewCategory)
 app.put("/categories/:id", guardAdmin, EventController.updateCategory)
 app.delete('/categories/:id', guardAdmin, EventController.deleteCategory)
 app.patch('/events/:id/buy', EventController.buyTicket)
+
 
 app.use(errorHandler)
 

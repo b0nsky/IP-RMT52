@@ -36,6 +36,31 @@ function Login() {
     }
   };
 
+  async function handleCredentialResponse(response) {
+    console.log('Encoded JWT ID token: ' + response.credential)
+    const { data } = await axiosInstance.post("/login/google", {
+      googleToken: response.credential
+    });
+    localStorage.setItem('access_token', data.access_token);
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Login',
+      })
+      navigate('/homepage');
+  }
+
+    useEffect(() => {
+        window.google.accounts.id.initialize({
+            client_id: "365803712182-fo7h02d63notgmfutrtr8qnqh9j3hi6p.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        window.google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }, [])
+
   return (
     <div className="login-container">
       <div className="col-md-6 login-left">
