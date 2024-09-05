@@ -257,3 +257,42 @@ body, html {
 .update-btn {
     width: auto;
 }
+
+.edit-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffff; 
+}
+
+.edit-image-form {
+    background-color: #ffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    transform: translateY(-50%);
+}
+
+.edit-image-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.edit-image-form .form-control {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.edit-image-form .btn-primary {
+    display: block;
+    width: 40%;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px auto;
+    text-align: center;
+}
+
+

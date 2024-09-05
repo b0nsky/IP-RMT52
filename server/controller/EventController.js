@@ -5,8 +5,13 @@ const { Op } = require('sequelize');
 const { OAuth2Client } = require('google-auth-library');
 const gemini = require('../helpers/gemini')
 const client = new OAuth2Client()
+const { v2 } = require('cloudinary')
 
-
+v2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
+});
 module.exports = class EventController {
     static async getEvents(req, res, next) {
         try {
@@ -305,6 +310,34 @@ module.exports = class EventController {
             res.status(200).json({ eventName, description });
         } catch (err) {
             console.error('Error generating description:', err);
+            next(err);
+        }
+    }
+
+    static async updateEventCover(req, res, next) {
+        try {
+            const eventId = parseInt(req.params.id)
+            console.log(eventId, " testtest ");
+            const event = await Event.findByPk(eventId)
+            if(!event) {
+                throw {name: "NotFound", message : `Event id:${eventId} not found`}
+            }
+
+            const mimeType = req.file.mimetype;
+            const base64Image = req.file.buffer.toString("base64")
+            const result = await v2.uploader.upload(
+                `data:${mimeType};base64,${base64Image}`,
+                {
+                    folder: "8 Entertainment",
+                    public_id: req.file.originalname,
+                }
+            );
+            console.log(eventId," testtest ")
+            await event.update({imgUrl: result.secure_url})
+
+            res.json({ message: "Image url has been updated"})
+        } catch(err) {
+            console.log(err, " <<< update Cover ");
             next(err);
         }
     }

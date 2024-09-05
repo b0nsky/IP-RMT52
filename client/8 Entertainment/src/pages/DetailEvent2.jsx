@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../axios/axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function DetailEvent2() {
     const [event, setEvent] = useState(null);
     const [generatedDescription, setGeneratedDescription] = useState('');
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const fetchEventDetails = async () => {
         try {
@@ -106,14 +107,20 @@ function DetailEvent2() {
                         <div className="d-flex justify-content-between">
                             <button 
                                 onClick={handleBuyTicket} 
-                                className="btn btn-primary"
+                                className="btn btn-primary m-2"
                                 disabled={event.stock <= 0}
                             >
                                 Buy Ticket
                             </button>
-                            <Link to={`/updateevent/${event.id}`} className="btn btn-warning">
+                            <Link to={`/updateevent/${event.id}`} className="btn btn-warning m-2">
                                 Edit Event
                             </Link>
+                            <button 
+                                onClick={() => navigate(`/detailevent/${event.id}/edit-image`)} 
+                                className="btn btn-secondary m-2"
+                            >
+                                Edit Image
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ import AddNewCategory from '../pages/AddNewCategory';
 import UpdateEvent from '../pages/UpdateEvent';
 import AddNewEvent from '../pages/AddNewEvent';
 import NewUser from '../pages/NewUser';
+import EditImage from '../pages/UploadImage';
 
 
 const router = createBrowserRouter([
@@ -117,6 +118,17 @@ const router = createBrowserRouter([
             {
                 path: "/addevent",
                 element: <AddNewEvent />,
+                loader: () => {
+                    const access_token = localStorage.getItem("access_token");
+                    if (access_token) {
+                        return null;
+                    }
+                    throw redirect("/login");
+                },
+            },
+            {
+                path: "/detailevent/:id/edit-image",
+                element: <EditImage />,
                 loader: () => {
                     const access_token = localStorage.getItem("access_token");
                     if (access_token) {

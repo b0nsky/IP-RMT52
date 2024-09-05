@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+const multer = require('multer')
+const upload = multer({ storage: multer.memoryStorage() })
 
 app.get('/pub/events', EventController.pubEvents)
 app.get('/pub/events/:id', EventController.onePubEvent)
@@ -39,6 +41,8 @@ app.put("/categories/:id", guardAdmin, EventController.updateCategory)
 app.delete('/categories/:id', guardAdmin, EventController.deleteCategory)
 app.patch('/events/:id/buy', EventController.buyTicket)
 app.post('/events/:id/generate-description', EventController.generateDescription);
+
+app.patch("/events/:id/imgUrl", guardAdmin, upload.single('imgUrl') , EventController.updateEventCover);
 
 
 app.use(errorHandler)
