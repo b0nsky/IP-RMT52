@@ -82,7 +82,7 @@ const router = createBrowserRouter([
                 },
             },
             {
-                path: "/updatecategory",
+                path: "/updatecategory/:id",
                 element: <UpdateCategory />,
                 loader: () => {
                     const access_token = localStorage.getItem("access_token");
@@ -104,7 +104,7 @@ const router = createBrowserRouter([
                 },
             },
             {
-                path: "/updateevent",
+                path: "/updateevent/:id",
                 element: <UpdateEvent />,
                 loader: () => {
                     const access_token = localStorage.getItem("access_token");
