@@ -1,0 +1,259 @@
+body {
+    /* background-image: url('https://example.com/your-background-image.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; */
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+    margin-bottom: 0.5rem
+}
+
+.event-img {
+    height: 300px; 
+    width: 100%; 
+    object-fit: cover; 
+    object-position: top; 
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-body .btn {
+    margin-top: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.card {
+    flex: 1;
+}
+
+@keyframes subtle-shake {
+    0% { transform: translate(1px, 0); }
+    25% { transform: translate(-1px, 0); }
+    50% { transform: translate(1px, 0); }
+    75% { transform: translate(-1px, 0); }
+    100% { transform: translate(1px, 0); }
+}
+
+.detail-btn:hover {
+    animation: subtle-shake 1s ease;
+    animation-iteration-count: infinite;
+}
+
+body, html {
+    height: 100%;
+}
+
+.add-category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.add-category-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px; 
+    width: 100%; 
+}
+
+.add-event-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.add-event-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%; 
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary-add {
+    width: 100%; 
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+    max-width: 600px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.category-list {
+    margin-bottom: 20px;
+    width: 100%; 
+}
+
+.event-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.detail-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.event-detail {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+    max-width: 100%; /
+}
+
+.col-md-6.d-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #28a745;
+}
+
+.stock {
+    color: #dc3545;
+}
+
+.about-section {
+    margin-top: 0;
+    max-width: 70%; 
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.login-left {
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.login-logo {
+    max-width: 50%; 
+    height: auto; 
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.add-category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.add-category-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px; 
+    width: 100%; 
+}
+
+.add-event-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+.add-event-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%; 
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary-update {
+    width: 100%; 
+}
+
+.update-btn {
+    width: auto;
+}
