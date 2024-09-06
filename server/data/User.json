@@ -14,5 +14,13 @@
         "phoneNumber": 628246432311,
         "address": "jl. Layang 33 no 21",
         "role": "Admin"
+    },
+    {
+        "id": 3,
+        "email": "grahasevilla@gmail.com",
+        "password": "grahasevilla",
+        "phoneNumber": 3241321321,
+        "address": "jl. Pojok 2 no 1",
+        "role": "User"
     }
 ]
