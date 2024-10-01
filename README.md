@@ -13,6 +13,7 @@ List of Available Endpoints:
 6. POST /pub/events/:id/generate-description
 
 Endpoint di bawah ini memerlukan authentication:
+
 7. GET /events
 8. GET /events/:id
 9. GET /categories
@@ -22,6 +23,7 @@ Endpoint di bawah ini memerlukan authentication:
 
 Endpoint di bawah ini memerlukan authorization:
 Hanya Admin yang bisa mengakses
+
 13. POST /events
 14. PUT /events/:id
 15. DELETE /events/:id
